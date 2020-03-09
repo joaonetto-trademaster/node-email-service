@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "Email service function",
   "main": "index.js",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "engineStrict" : true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "watch": "nodemon index.js"
   },
   "husky": {
     "hooks": {
