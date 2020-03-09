@@ -11,7 +11,7 @@ This project responsibility is to send any kind of message service (sms, email, 
 What you will need to run this project
 
 ```
-git clone https://github.com/joaonetto-trademaster/email-function-api
+git clone https://github.com/joaonetto-trademaster/node-email-service
 cd email-function-api
 yarn
 ```
