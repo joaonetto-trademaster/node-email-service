@@ -13,7 +13,6 @@ module.exports = sendEmail = (data) => {
     to: data.to,
     from: data.from,
     templateId: templates[data.templateName],
-    subject: data.subject,
     dynamic_template_data: {
       name: data.name,
       reset_password_url: data.reset_password_url,
@@ -21,11 +20,12 @@ module.exports = sendEmail = (data) => {
     }
   };
 
+  console.log('msg', msg);
+
   sgMail.send(msg, (error, result) => {
     if (error) {
       console.log(error);
     } else {
-      console.log('result', result)
       console.log('Email sent successfully');
     }
   });

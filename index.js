@@ -17,7 +17,6 @@ app.post('/email', (req, res) => {
     templateName,
     from,
     to,
-    subject,
     name,
     confirm_account_url
   } = req.body;
@@ -26,7 +25,6 @@ app.post('/email', (req, res) => {
     templateName,
     from,
     to,
-    subject,
     name,
     confirm_account_url
   };
