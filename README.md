@@ -8,7 +8,7 @@ This project responsibility is to send any kind of message service (sms, email, 
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+What you will need to run this project
 
 ```
 git clone https://github.com/joaonetto-trademaster/email-function-api

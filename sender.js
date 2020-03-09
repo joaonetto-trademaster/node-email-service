@@ -16,8 +16,8 @@ module.exports = sendEmail = (data) => {
     subject: data.subject,
     dynamic_template_data: {
       name: data.name,
+      reset_password_url: data.reset_password_url,
       confirm_account_url: data.confirm_account_url,
-      reset_password_url: data.reset_password_url
     }
   };
 
@@ -25,6 +25,7 @@ module.exports = sendEmail = (data) => {
     if (error) {
       console.log(error);
     } else {
+      console.log('result', result)
       console.log('Email sent successfully');
     }
   });
