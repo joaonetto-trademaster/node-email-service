@@ -1,32 +1,54 @@
 const sgMail = require("@sendgrid/mail");
 
-module.exports = sendEmail = (data) => {
+module.exports = sendEmail = (data, res) => {
+  let msg;
   sgMail.setApiKey(process.env.SENDGRID_API);
 
   templates = {
-    password_reset_confirm: "4980d32f-8a18-453f-bfab-527d49e81e3a",
-    password_reset: "8f919725-bcbf-46f1-aac8-2ac2d37e3400",
-    confirm_account: "d-cb3ca7e305be4329b8fff35bb9de3d60",
+    password_reset: "d-b95d5b8fa5674b808f8d1c50707aea97",
+    confirm_account: "d-33166d09969e4a25a9c57530c3abc098",
   };
 
-  const msg = {
+  msg = {
     to: data.to,
     from: data.from,
     templateId: templates[data.templateName],
     dynamic_template_data: {
-      name: data.name,
-      reset_password_url: data.reset_password_url,
-      confirm_account_url: data.confirm_account_url,
+      name: data.name
     }
   };
 
-  console.log('msg', msg);
+  switch (data.templateName) {
+    case 'confirm_account':
+      msg = {
+        ...msg,
+        dynamic_template_data: {
+          ...msg.dynamic_template_data,
+          confirm_account_url: data.confirm_account_url,
+        }
+      };
+      break;
 
-  sgMail.send(msg, (error, result) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent successfully');
+    case 'password_reset':
+      msg = {
+        ...msg,
+        dynamic_template_data: {
+          ...msg.dynamic_template_data,
+          reset_password_url: data.reset_password_url,
+        }
+      };
+      break;
+
+    default:
+      throw new Error('Template inválido!');
+  }
+
+  (async () => {
+    try {
+      await sgMail.send(msg);
+      res.json({ success: true, message: `Email sent to: ${data.to}` });
+    } catch (err) {
+      console.error(err.toString());
     }
-  });
+  })();
 }
