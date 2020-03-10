@@ -2,7 +2,7 @@ const sgMail = require("@sendgrid/mail");
 
 module.exports = sendEmail = (data, res) => {
   let msg;
-  sgMail.setApiKey(process.env.SENDGRID_API);
+  sgMail.setApiKey(process.env.SENDGRID_NODE_API);
 
   templates = {
     password_reset: "d-b95d5b8fa5674b808f8d1c50707aea97",
