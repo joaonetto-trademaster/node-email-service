@@ -6,7 +6,7 @@ module.exports = sendEmail = (data, res) => {
 
   templates = {
     password_reset: "d-b95d5b8fa5674b808f8d1c50707aea97",
-    confirm_account: "d-33166d09969e4a25a9c57530c3abc098",
+    welcome: "d-33166d09969e4a25a9c57530c3abc098",
   };
 
   msg = {
@@ -19,12 +19,13 @@ module.exports = sendEmail = (data, res) => {
   };
 
   switch (data.templateName) {
-    case 'confirm_account':
+    case 'welcome':
       msg = {
         ...msg,
         dynamic_template_data: {
           ...msg.dynamic_template_data,
-          confirm_account_url: data.confirm_account_url,
+          email: data.to,
+          password: data.password,
         }
       };
       break;

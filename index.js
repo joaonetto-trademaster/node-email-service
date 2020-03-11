@@ -18,8 +18,8 @@ app.post('/email', (req, res) => {
     from,
     to,
     name,
-    confirm_account_url,
-    reset_password_url
+    reset_password_url,
+    password
   } = req.body;
 
   const data = {
@@ -27,8 +27,8 @@ app.post('/email', (req, res) => {
     from,
     to,
     name,
-    confirm_account_url,
-    reset_password_url
+    reset_password_url,
+    password
   };
 
   //pass the data object to send the email
